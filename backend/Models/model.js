@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { number } = require('zod');
 
 
-
+//MODEL FOR USER
 const paySchema = new mongoose.Schema({
     firstName:{
         type:String,
@@ -21,6 +21,8 @@ const paySchema = new mongoose.Schema({
         required :true
     }
 })
+
+// MODEL for users account
 
 const AccountSchema = mongoose.Schema({
     userId: {

@@ -1,26 +1,34 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 
+// Middleware function to authenticate users
+const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers.authorization; // Extract the `Authorization` header from the request
 
-const authMiddleware = (req,res,next)=>{
-    const authHeader = req.headers.authorization;
-
-    if(!authHeader || !authHeader.startsWith('Bearer')){
-        res.status(403).json({})
+    // Check if the `Authorization` header exists and starts with 'Bearer'
+    if (!authHeader || !authHeader.startsWith('Bearer')) {
+        return res.status(403).json({}); // Respond with a 403 status if the token is missing or invalid
     }
 
+    // Extract the token from the `Authorization` header
     const token = authHeader.split(' ')[1];
-     try{
-        const decoded = jwt.verify(token,process.env.JWT_SECRET);
-        req.userId  = decoded.userId;
-        next()
 
+    try {
+        // Verify the token using the secret key from environment variables
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-     }catch(e){
+        // Attach the decoded user ID to the request object for further processing
+        req.userId = decoded.userId;
+
+        // Call the `next` function to proceed to the next middleware or route handler
+        next();
+    } catch (e) {
+        // Handle invalid or expired tokens
         return res.status(403).json({});
-     }
-}
+    }
+};
 
-module.exports={
+// Export the middleware function to be used in other parts of the application
+module.exports = {
     authMiddleware
-}
+};
