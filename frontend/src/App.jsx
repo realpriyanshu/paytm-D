@@ -1,12 +1,21 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SignUp from './pages/Signup.jsx';
+import Signin from './pages/Signin.jsx';
+import Dashboard from './pages/DashBoard.jsx';
+import Send from './pages/Send.jsx';
 
 function App() {
-
   return (
-    <div className="">
-        Hello world
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path='/' element={<div>Home</div>} /> */}
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/send" element={<Send />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
-//password of the cluster paytm0 is  7osTcOSp0EALqxGZ
+export default App;

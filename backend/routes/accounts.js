@@ -18,14 +18,14 @@ router.get('/balance', authMiddleware, async (req, res) => {
 });
 
 // Route to transfer money from one account to another
-router.post('/transfer', async (req, res) => {
+router.post('/transfer',authMiddleware, async (req, res) => {
     // Start a new session for transaction management
 
     //why we need i session because sometimes in between the operation got stuck so sometimes the payment will get transfered without even 
     // amount deducted thats why we are using session so it will complete the whole operation or will cancel the whole operation
     
     const session = await mongoose.startSession();
-    session.startSession();
+    session.startTransaction();
 
     // Extracting amount and recipient's userId from the request body
     const { amount, to } = req.body;
@@ -34,7 +34,7 @@ router.post('/transfer', async (req, res) => {
     const account = await Account.findOne({
         userId: req.userId
     }).session(session);
-
+     console.log(account);
     // Check if the sender's account exists and has sufficient balance
     if (!account || account.balance < amount) {
         await session.abortTransaction(); // Abort the transaction if validation fails

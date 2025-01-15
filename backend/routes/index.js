@@ -63,8 +63,8 @@ Router.post("/signup", async (req, res) => {
   const user_id = create._id;
 
   // Create an account for the user with an initial random balance
-  Account.create({
-    user_id,
+  await Account.create({
+    userId :user_id,
     balance: 1 + Math.random() * 10000,
   });
 
@@ -109,6 +109,7 @@ Router.post("/signin", async (req, res) => {
       token: token,
     });
     return;
+
   } else {
     // Respond with error message if user doesn't exist
     res.json({
@@ -124,6 +125,8 @@ Router.get("/", async (req, res) => {
   // Respond with the list of users
   res.json(users);
 });
+
+
 
 // Route to get filtered users based on query
 Router.get("/bulk", async (req, res) => {

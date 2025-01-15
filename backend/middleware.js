@@ -1,6 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 
+//  IN THE MIDDLE WARE THE TOKEN IS DESTRUCTURED AND THE USER id IS FETCHED FROM IT THEN THE POST OR GET ROUTE FETCH THE USER DATA FROM IT 
+
 // Middleware function to authenticate users
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization; // Extract the `Authorization` header from the request

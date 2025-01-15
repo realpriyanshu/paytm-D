@@ -6,6 +6,7 @@ const mongoose = require('mongoose'); // Importing Mongoose for database connect
 require('dotenv').config(); // Loading environment variables from a `.env` file
 const cors = require('cors'); // Importing CORS middleware to handle cross-origin requests
 
+app.use(cors());
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
@@ -16,7 +17,7 @@ app.use('/user', userRouter);
 app.use('/account', AccountRouter);
 
 // Middleware to enable CORS (Cross-Origin Resource Sharing)
-app.use(cors());
+
 
 // Connecting to MongoDB database
 mongoose.connect(process.env.MONGO_URL)

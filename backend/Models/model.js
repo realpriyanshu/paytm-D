@@ -30,9 +30,9 @@ const AccountSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
-    balance :{
+    balance: {
         type: Number,
-        required:true
+        required: true
     }
 });
 const Account = mongoose.model('Account',AccountSchema);
