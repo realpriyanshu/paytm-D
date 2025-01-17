@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 export default function Send() {
   const [amount, setAmount] = useState(0);
+  const [showvideo , setShowvideo] = useState(false);
   const [ searchParams] =useSearchParams();
   const id = searchParams.get("id");
   const name = searchParams.get("name");
@@ -48,12 +49,15 @@ export default function Send() {
                 }
             }).then(()=>{
                 console.log("transferred")
+                setShowvideo(true)
+               
             }).catch((e)=>{
                 console.log("server down")
             })
           }} className="bg-green-500 text-white text-sm h-10 w-full rounded-lg hover:bg-green-600 transition duration-200">
             Initiate Transfer
           </button>
+          
         </div>
       </div>
     </>

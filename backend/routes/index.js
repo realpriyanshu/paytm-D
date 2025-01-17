@@ -95,6 +95,7 @@ Router.post("/signin", async (req, res) => {
   });
 
   if (credentials) {
+    console.log(credentials._id);
     // Generate a JWT token for authenticated user
     const token = jwt.sign(
       {

@@ -19,7 +19,9 @@ export default function Dashboard(){
                   Authorization: "Bearer " + localStorage.getItem("token"),
                 },
               });
-              setBal(Math.floor(response.data.balance))
+
+              const balance = await response.data.balance;
+              setBal(Math.floor(balance))
               console.log("Balance:", response.data); // Handle the fetched balance here
             } catch (error) {
               console.error("Error fetching balance:", error);
@@ -29,6 +31,8 @@ export default function Dashboard(){
           fetchBalance();
         
        },[])
+
+  
 return (
     <>
     <AppBar />

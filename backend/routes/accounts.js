@@ -4,17 +4,15 @@ const { default: mongoose } = require('mongoose');
 const { authMiddleware } = require('../middleware');
 const router = express.Router();
 
-// Route to check the balance of a user's account
-router.get('/balance', authMiddleware, async (req, res) => {
-    // Find the account associated with the authenticated user
+
+router.get("/balance", authMiddleware, async (req, res) => {
     const account = await Account.findOne({
         userId: req.userId
     });
 
-    // Respond with the balance of the account
-    res.status(200).json({
+    res.json({
         balance: account.balance
-    });
+    })
 });
 
 // Route to transfer money from one account to another
@@ -34,7 +32,7 @@ router.post('/transfer',authMiddleware, async (req, res) => {
     const account = await Account.findOne({
         userId: req.userId
     }).session(session);
-     console.log(account);
+    
     // Check if the sender's account exists and has sufficient balance
     if (!account || account.balance < amount) {
         await session.abortTransaction(); // Abort the transaction if validation fails
