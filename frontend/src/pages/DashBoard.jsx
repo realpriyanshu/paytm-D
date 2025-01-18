@@ -5,11 +5,10 @@ import Users from "../components/Users";
 import axios from "axios";
 
 
-
-
 export default function Dashboard(){
 
     const [bal , setBal] = useState(0);
+    const [fLetter , setFLetter] = useState("");
 
     useEffect(()=>{
         const fetchBalance = async () => {
@@ -22,7 +21,7 @@ export default function Dashboard(){
 
               const balance = await response.data.balance;
               setBal(Math.floor(balance))
-              console.log("Balance:", response.data); // Handle the fetched balance here
+               
             } catch (error) {
               console.error("Error fetching balance:", error);
             }
@@ -35,9 +34,12 @@ export default function Dashboard(){
   
 return (
     <>
-    <AppBar />
+    <AppBar firstLetter={fLetter}/>
     <Balance amount={bal} />
+    <div className="mx-10">
     <Users />
+    </div>
+    
     </>
 )
 

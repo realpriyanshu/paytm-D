@@ -28,7 +28,12 @@ const updateBody = z.object({
   lastName: z.string().optional(),  // Last name is optional
 });
 
+
+
 // Route for user signup
+
+
+
 Router.post("/signup", async (req, res) => {
   const userPay = req.body;
 
@@ -83,6 +88,10 @@ Router.post("/signup", async (req, res) => {
   });
 });
 
+
+
+
+
 // Route for user sign-in
 Router.post("/signin", async (req, res) => {
   // Validate user input
@@ -99,7 +108,7 @@ Router.post("/signin", async (req, res) => {
     // Generate a JWT token for authenticated user
     const token = jwt.sign(
       {
-        user_id: credentials._id,
+        userId: credentials._id,
       },
       process.env.JWT_SECRET
     );
@@ -120,12 +129,6 @@ Router.post("/signin", async (req, res) => {
 });
 
 // Route to get all users
-Router.get("/", async (req, res) => {
-  const users = await DbSchema.find(); // Fetch all users from the database
-
-  // Respond with the list of users
-  res.json(users);
-});
 
 
 

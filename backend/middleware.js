@@ -2,9 +2,6 @@
 
 const express = require('express')
 
-
-
-
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
@@ -18,11 +15,10 @@ const authMiddleware = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token ,process.env.JWT_SECRET);
-        console.log(token)
-        console.log(process.env.JWT_SECRET)
+ 
 
-        req.userId = decoded.user_id;
-        console.log(decoded.userId);
+        req.userId = decoded.userId;
+
 
         next();
     } catch (err) {
