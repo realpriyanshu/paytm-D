@@ -10,7 +10,7 @@ export default function Users(){
 
 useEffect(()=>{
  
-axios.get("http://localhost:5000/user/bulk?filter=" + filter).then(
+axios.get(`${import.meta.env.VITE_REACT_APP_BASEURL}/user/bulk?filter=` + filter).then(
     (res)=>{
         setUsers(res.data.user);
         

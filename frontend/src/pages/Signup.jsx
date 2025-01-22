@@ -47,7 +47,7 @@ export default  function SignUp(){
                password,
                username
             }
-          const response = await  axios.post("http://localhost:5000/user/signup", user)
+          const response = await  axios.post(`${import.meta.env.VITE_REACT_APP_BASEURL}/user/signup`, user)
               
        
           localStorage.setItem("token", response.data.token);
