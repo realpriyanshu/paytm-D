@@ -21,7 +21,8 @@ export default function Signin() {
         password:password
       });
 
-      // Save the token to localStorage
+      // Save the token to 
+      console.log(resp.data.token)
       localStorage.setItem("token",resp.data.token);
 
       // Navigate to the dashboard
