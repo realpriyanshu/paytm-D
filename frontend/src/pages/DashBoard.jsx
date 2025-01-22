@@ -20,6 +20,7 @@ export default function Dashboard(){
               });
 
               const balance = await response.data.balance;
+              console.log(balance);
               setBal(Math.floor(balance))
                
             } catch (error) {
