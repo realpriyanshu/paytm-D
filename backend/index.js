@@ -8,11 +8,12 @@ const cors = require('cors'); // Importing CORS middleware to handle cross-origi
 
 // app.use(cors());
 
-app.use(cors({
-    origin: process.env.FRONTEND_URL, // Allow only your frontend origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  }));
+// app.use(cors({
+//     origin: process.env.FRONTEND_URL, // Allow only your frontend origin
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   }));
+app.use(cors({ origin: '*' }));
+
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
