@@ -6,7 +6,13 @@ const mongoose = require('mongoose'); // Importing Mongoose for database connect
 require('dotenv').config(); // Loading environment variables from a `.env` file
 const cors = require('cors'); // Importing CORS middleware to handle cross-origin requests
 
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+    origin: process.env.FRONTEND_URL, // Allow only your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
