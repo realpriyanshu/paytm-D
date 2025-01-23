@@ -44,7 +44,7 @@ export default function Send() {
 
           {/* Transfer Button */}
           <button onClick={()=>{
-             axios.post("http://localhost:5000/account/transfer",{
+             axios.post(`${import.meta.env.VITE_REACT_APP_BASEURL}/account/transfer`,{
                 to:id,
                 amount
             },{
